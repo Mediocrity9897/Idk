@@ -1,17 +1,33 @@
 from django.contrib import admin
 from .models import Product, Order
+from django.http import HttpRequest
+from django.db.models import QuerySet
+from .admin_mixins import ExportAsCSVMixin
 
 
 class OrderInline(admin.TabularInline):
     model = Product.orders.through
 
 
+@admin.action(description="Archive products")
+def mark_arcived(modeladmin: admin.ModelAdmin, HttpRequest, queryset: QuerySet):
+    queryset.update(archived=True)
+
+@admin.action(description="Unarchive products")
+def mark_unarcived(modeladmin: admin.ModelAdmin, HttpRequest, queryset: QuerySet):
+    queryset.update(archived=False)
+
 @admin.register(Product)
-class ProductAdimin(admin.ModelAdmin):
+class ProductAdimin(admin.ModelAdmin, ExportAsCSVMixin):
+    actions = [
+        mark_arcived,
+        mark_unarcived,
+        "export_csv",
+    ]
     inlines = [
         OrderInline,
     ]
-    list_display = "pk", "name", "description_short", "prise", 'discount'
+    list_display = "pk", "name", "description_short", "prise", 'discount', "archived"
     list_display_links = "pk", "name"
     ordering = "pk", "name"
     search_fields = "name", "description" 
