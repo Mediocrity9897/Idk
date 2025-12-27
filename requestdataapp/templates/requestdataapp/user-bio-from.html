@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Default Title{% endblock %}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            max-width: 500px;
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 4px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    {% block body %}
+        <h1>Форма пользователя</h1>
+        <div>
+            <form method="post">
+                {% csrf_token %}
+                <p>
+                    <label for="name-id">Полное имя</label>
+                    <input id="name-id" name="name" type="text" maxlength="100" required>
+                </p>
+                <p>
+                    <label for="age">Возраст</label>
+                    <input id="age" name="age" type="number" min="1" max="99" required>
+                </p>
+                <p>
+                    <label for="bio">Биография</label>
+                    <textarea name="bio" id="bio" cols="42" rows="5" placeholder="Расскажите о себе..."></textarea>
+                </p>
+                <button type="submit">Отправить</button>
+            </form>
+        </div>
+    {% endblock %}
+</body>
+</html>
