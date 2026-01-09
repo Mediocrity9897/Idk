@@ -1,8 +1,8 @@
 <!doctype html>
-<html>
+<html lang="ru">
 <head>
     <meta charset="utf-8" />
-    <title>Моя тестовая страница</title>
+    <title>main menu</title>
     
     {% load static %}
     
@@ -10,13 +10,96 @@
         body {
             text-align: center;
             font-family: Arial, sans-serif;
-            padding: 20px;
+            padding: 50px;
+            background-color: #f0f0f0;
+        }
+        
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            display: inline-block;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .image-container {
+            margin: 20px 0;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .admin-button {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 30px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        
+        .admin-button:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+            text-decoration: none;
+            color: white;
+        }
+        
+        .admin-button:active {
+            transform: scale(0.98);
+        }
+        
+        .button-container {
+            margin-top: 20px;
+        }
+        
+        .warning {
+            color: #666;
+            font-size: 14px;
+            margin-top: 10px;
+            font-style: italic;
         }
     </style>
 </head>
 <body>
-    <p><strong>thousandcursedenemies1000-7</strong></p>
+    <div class="container">
+        <h1>Гойда ZOV SVO</h1>
+        
+        <p><strong>Саша наступи на меня</strong></p>
+        
+        <div class="image-container">
+            <img src="{% static 'main/grusnipon.jpg' %}" 
+                 alt="Моё тестовое изображение" 
+                 width="500">
+        </div>
+        
+        <div class="button-container">
+            <a href="/admin/" class="admin-button" target="_blank">
+                📊 Перейти в админ-панель
+            </a>
+            
+            <p class="warning">
+                Для доступа потребуется логин и пароль администратора
+            </p>
+        </div>
+    </div>
     
-    <img src="{% static 'main/grusnipon.jpg' %}" alt="Моё тестовое изображение" width="500">
+
 </body>
 </html>
